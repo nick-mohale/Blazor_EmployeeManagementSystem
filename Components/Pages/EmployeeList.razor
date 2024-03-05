@@ -1,0 +1,47 @@
+﻿@page "/employeelist"
+
+@rendermode InteractiveServer
+@inject EmployeeService EmployeeService
+@inject NavigationManager NavManager
+
+<h3>Employee List</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in employees)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td><a class="btn btn-primary" @onclick="@(() => viewEmployee(employee.Id))"> view </a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+
+    List<Employee> employees = new List<Employee>();
+
+    protected override void OnInitialized()
+    {
+        employees = EmployeeService.GetEmployees();
+    }
+
+    void viewEmployee(int Id)
+    {
+        NavManager.NavigateTo($"/employeedetails/{Id}");
+    }
+}
