@@ -1,6 +1,6 @@
 ﻿namespace EmployeeManagementSystem.Components.Model
 {
-    public class Employee
+    public class EmployeeModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

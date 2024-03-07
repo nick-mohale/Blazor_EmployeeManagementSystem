@@ -33,11 +33,14 @@
 @code {
 
 
-    List<Employee> employees = new List<Employee>();
+    List<EmployeeModel> employees = new List<EmployeeModel>();
 
     protected override void OnInitialized()
     {
-        employees = EmployeeService.GetEmployees();
+        if (EmployeeService != null)
+        {
+            employees = EmployeeService.GetEmployees();
+        }
     }
 
     void viewEmployee(int Id)

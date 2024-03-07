@@ -3,26 +3,24 @@ namespace EmployeeManagementSystem.Components.Model
 {
 	public class DepartmentService
 	{
-		private List<Department> departments;
+		private List<DepartmentModel> departments;
 
 		public DepartmentService()
 		{
-			departments = new List<Department>
+			departments = new List<DepartmentModel>
 					{
-						new Department { Id = 1, DepartmentName = "IT Department"},
-						new Department { Id = 2, DepartmentName = "Sales"},
-						new Department { Id = 3, DepartmentName = "Support"},
-						new Department { Id = 4, DepartmentName = "Admin"}
+						new DepartmentModel { Id = 1, DepartmentName = "IT Department"},
+						new DepartmentModel { Id = 2, DepartmentName = "Sales"},
+						new DepartmentModel { Id = 3, DepartmentName = "Support"},
+						new DepartmentModel { Id = 4, DepartmentName = "Admin"}
 					};
 		}
 
-		public List<Department> GetDepartments()
+		public List<DepartmentModel> GetDepartments()
 		{
 			return departments;
 		}
-
-
-		public Department GetDepartmentById(int Id)
+		public DepartmentModel GetDepartmentById(int Id)
 		{
 			return departments.FirstOrDefault(e => e.Id == Id);
 		}
