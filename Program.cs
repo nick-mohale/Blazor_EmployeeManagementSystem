@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSingleton<EmployeeService>();
+builder.Services.AddSingleton<DepartmentService>();
 
 var app = builder.Build();
 

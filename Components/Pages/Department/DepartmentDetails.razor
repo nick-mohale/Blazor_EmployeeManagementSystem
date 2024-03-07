@@ -1,0 +1,49 @@
+﻿@page "/departmentdetails/{Id:int}"
+
+@inject DepartmentService DepartmentService
+
+<h3>Department Details</h3>
+
+@if (Department != null)
+{
+    <dl>
+        <dt>ID:</dt>
+        <dd>@Department.Id</dd>
+
+        <dt>Department Name:</dt>
+        <dd>@Department.DepartmentName</dd>
+
+    </dl>
+}
+else
+{
+    <p>Employee not found.</p>
+}
+
+
+@code {
+
+    [Parameter]
+
+    public int Id { get; set; }
+    Department Department { get; set; }
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            Department = DepartmentService.GetDepartmentById(Id);
+
+            if (Department == null)
+            {
+                Console.WriteLine($"No Department Found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching Department details: {ex.Message}");
+        }
+    }
+
+}

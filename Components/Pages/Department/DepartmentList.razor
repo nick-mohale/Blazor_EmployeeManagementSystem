@@ -1,0 +1,41 @@
+﻿@page "/departmentlist"
+
+@rendermode InteractiveServer
+@inject DepartmentService DepartmentService
+@inject NavigationManager NavManager
+
+<h3>DepartmentList</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Department Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in departments)
+        {
+            <tr>
+                <td>@department.Id</td>
+                <td>@department.DepartmentName</td>
+                <td><a class="btn btn-primary" @onclick="@(() => viewDepartment(department.Id))"> view </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    List<Department> departments = new List<Department>();
+
+    protected override void OnInitialized()
+    {
+        departments = DepartmentService.GetDepartments();
+    }
+
+    void viewDepartment(int Id)
+    {
+        NavManager.NavigateTo($"/departmentdetails/{Id}");
+    }
+}
