@@ -1,34 +1,25 @@
 ﻿@page "/employeelist"
 
+@using DevExpress.Blazor
+
 @rendermode InteractiveServer
 @inject EmployeeService EmployeeService
 @inject NavigationManager NavManager
 
 <h3>Employee List</h3>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>View</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in employees)
-        {
-            <tr>
-                <td>@employee.Id</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.LastName</td>
-                <td><a class="btn btn-primary" @onclick="@(() => viewEmployee(employee.Id))"> view </a></td>
-
-            </tr>
-        }
-    </tbody>
-</table>
+<DxGrid Data="employees">
+    <Columns>
+        <DxGridDataColumn FieldName="@nameof(EmployeeModel.Id)"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="@nameof(EmployeeModel.FirstName)"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="@nameof(EmployeeModel.LastName)"></DxGridDataColumn>
+        <DxGridDataColumn Width="100px"> 
+            <CellDisplayTemplate>
+                <a class="btn btn-primary" @onclick="@(() => viewEmployee((context.DataItem as EmployeeModel).Id))"> view </a>
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+    </Columns>
+</DxGrid>
 
 @code {
 

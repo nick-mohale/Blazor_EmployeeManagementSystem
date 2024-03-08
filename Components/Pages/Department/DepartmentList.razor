@@ -1,29 +1,22 @@
 ﻿@page "/departmentlist"
+@using DevExpress.Blazor
 
 @rendermode InteractiveServer
 @inject DepartmentService DepartmentService
 @inject NavigationManager NavManager
 
 <h3>DepartmentList</h3>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Department Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var department in departments)
-        {
-            <tr>
-                <td>@department.Id</td>
-                <td>@department.DepartmentName</td>
-                <td><a class="btn btn-primary" @onclick="@(() => viewDepartment(department.Id))"> view </a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<DxGrid Data="departments">
+    <Columns>
+        <DxGridDataColumn FieldName="@nameof(DepartmentModel.Id)"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="@nameof(DepartmentModel.DepartmentName)"></DxGridDataColumn>
+        <DxGridDataColumn Width="100px">
+            <CellDisplayTemplate>
+                <a class="btn btn-primary" @onclick="@(() => viewDepartment((context.DataItem as DepartmentModel).Id))"> view </a>
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+    </Columns>
+</DxGrid>
 
 
 @code {
