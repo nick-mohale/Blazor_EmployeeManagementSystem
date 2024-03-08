@@ -4,40 +4,36 @@
 @inject EmployeeService EmployeeService
 @inject DepartmentService DepartmentService
 
-@using MudBlazor
-@using ChartJs.Blazor.ChartJS.LineChart
-
 <h3>Dashboard</h3>
 
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card m-3 bg-danger" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div class="card-body">
+                    <h3 class="mb-4 text-white">Total Employees</h3>
+                    <div class="avatar avatar-primary" style="width: 80px; height: 80px;">
+                        <i class="bi bi-person" style="font-size: 2rem;"></i>
+                    </div>
+                    <h1 class="mt-4">@TotalEmployees</h1>
+                </div>
+            </div>
+        </div>
 
-<MudGrid>
-    <MudItem xs="12" md="6" lg="6">
-        <MudCard Class="m-3" Elevation="3" Color="Color.Primary">
-            <MudCardContent>
-                <h3 class="mb-4">Total Employees</h3>
-                <MudAvatar Size="Size.Large" Color="Color.Primary">
-                    <MudIcon Icon="MudIcons.People" />
-                </MudAvatar>
-                <h1 class="mt-4">@TotalEmployees</h1>
-            </MudCardContent>
-        </MudCard>
-    </MudItem>
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card m-3 bg-warning" style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div class="card-body">
+                    <h3 class="mb-4 text-white">Total Departments</h3>
+                    <div class="avatar avatar-secondary" style="width: 80px; height: 80px;">
+                        <i class="bi bi-building" style="font-size: 2rem;"></i>
+                    </div>
+                    <h1 class="mt-4">@TotalDepartments</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <MudItem xs="12" md="6" lg="6">
-        <MudCard Class="m-3" Elevation="3" Color="Color.Secondary">
-            <MudCardContent>
-                <h3 class="mb-4">Total Departments</h3>
-                <MudAvatar Size="Size.Large" Color="Color.Secondary">
-                    <MudIcon Icon="MudIcons.Building" />
-                </MudAvatar>
-                <h1 class="mt-4">@TotalDepartments</h1>
-            </MudCardContent>
-        </MudCard>
-    </MudItem>
-</MudGrid>
-
-
-  
 
 @code {
 
@@ -50,6 +46,8 @@
     protected override void OnInitialized()
     {
         LoadData();
+        //Charts();
+
     }
 
     private void LoadData()
@@ -65,6 +63,9 @@
         }
     }
 
-
+    private void Charts()
+    {
+        
+    }
 
 }
